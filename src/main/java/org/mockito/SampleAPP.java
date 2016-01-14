@@ -8,15 +8,31 @@ public class SampleAPP
 {
     
     /** The Constant apple. */
-    private  final static Apple apple =  getApple();
+    
     
     /**
      * Gets the apple.
      *
      * @return the apple
      */
-    public static  Apple getApple(){
+    public Apple getApple(){
     	
+    	Apple apple = new Apple();
+    	apple.setName("Apple");
     	return apple;
+    	
+   
+    	
+    	
+    }
+    
+    public void sayHello(){
+    	
+    	System.out.println("Hello1");
+    	System.out.println("Hello1");
+    	System.out.println("Hello1");
+    	System.out.println("Hello1");
+    	System.out.println("Hello1");S
+    	
     }
 }

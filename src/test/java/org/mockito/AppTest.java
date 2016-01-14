@@ -1,38 +1,47 @@
 package org.mockito;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import static org.mockito.Mockito.*;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+import java.io.IOException;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+import static org.junit.Assert.*;
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+@PrepareForTest
+@RunWith(PowerMockRunner.class)
+public class AppTest{
+	Apple apple;
+	SampleAPP sampleapp;
+	@Before
+	public void setup(){
+		
+		sampleapp = Mockito.mock(SampleAPP.class);
+		apple = new Apple();
+		apple.setName("Orange");
+		when(sampleapp.getApple()).thenReturn(apple);
+		doThrow(new RuntimeException()).when(sampleapp).sayHello();
+		System.out.println("test");
+		
+		
+	}
+	
+	@Test
+	public void testApple(){
+		System.out.println("test");
+		assertTrue(sampleapp.getApple().equals(apple));
+	}
+	
+	@Test(expected=RuntimeException.class)
+	public void testHello(){
+		
+		sampleapp.sayHello();
+		
+	}
+
+	
+	
 }
